@@ -9,11 +9,20 @@ client = discord.Client()
 
 jokes_answer = [
     'Mas o menos tu bromita 7/10',
-    'Oigan todos! Mister bromas aqui presente',
-    'Acaso aprendiste de Jucaritas? 10/10',
+    '¡Oigan todos! Master bromas aqui presente',
+    '¿Acaso aprendiste de Jucaritas? 10/10',
     'Uff +1000 lince',
-    'Ban'
+    'Se te cayeron tus zapatos de payaso',
+    '¿Fue chiste? Pa reirme',
+    'Bangaran',
+    'Tatai guambra mushpa',
+    'Me alegraste el día',
+    '¡Tu Joke-Fu es realmente impresionante!',
+    '¿Sacas tus chiste del libreto de Auron Play?',
+    'No entendí esa referencfia',
+    'Don comediante'
 ]
+
 
 def get_answer_to_joke():
     return random.choice(jokes_answer)
@@ -37,4 +46,9 @@ async def on_message(message):
 
 
 keep_alive()
-client.run(config('TOKEN'))
+
+token = os.environ['TOKEN']
+# token = config('TOKEN') using local enviroment with decouple
+
+
+client.run(token)
