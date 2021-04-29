@@ -1,12 +1,10 @@
 import discord
 import os
-from decouple import config
 from keep_alive import keep_alive
 import random
 import json
 import requests
-import io
-from PIL import Image
+
 
 client = discord.Client()
 
@@ -72,7 +70,6 @@ async def on_message(message):
 keep_alive()
 
 token = os.environ['TOKEN']
-# token = config('TOKEN') using local enviroment with decouple
 
 
 client.run(token)
