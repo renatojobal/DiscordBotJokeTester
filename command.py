@@ -6,6 +6,7 @@ class Command():
     """
 
     def __init__(self, content: str = None,
+                 alt: str = '',
                  description: str = 'Sin descripción aún, pregúntale al develper chancado que lo creó'):
         """
         Init command
@@ -15,7 +16,7 @@ class Command():
 
         self.content = content
         self.description = description
-
+        self.alt = alt
 
     def on_triggered(self):
         """

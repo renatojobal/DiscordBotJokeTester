@@ -1,5 +1,6 @@
-from flask import Flask
 from threading import Thread
+
+from flask import Flask
 
 """
 This file is used as a trick to keep the bot running.
