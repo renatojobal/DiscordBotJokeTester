@@ -4,6 +4,9 @@ from decouple import config
 from keep_alive import keep_alive
 import random
 import json
+import requests
+import io
+from PIL import Image
 
 client = discord.Client()
 
@@ -27,7 +30,24 @@ jokes_answer = [
 def get_answer_to_joke():
     return random.choice(jokes_answer)
 
+def get_cat_image_url():
+    url = "https://api.thecatapi.com/v1/images/search?mime_types=png"
 
+    headers = {'x-api-key': os.environ['CAT_API_KEY']}
+
+    response = json.loads(requests.request("GET", url, headers=headers).text)
+
+    image_url = response[0]['url']
+
+    return image_url
+
+def get_embed(answer : str, image_url : str):
+  embed = discord.Embed(
+    title= answer, 
+    message=answer, 
+    description="Un gatito :3")
+  embed.set_image(url=image_url)
+  return embed
 
 @client.event
 async def on_ready():
@@ -42,7 +62,11 @@ async def on_message(message):
 
         answer = get_answer_to_joke()
 
-        await message.channel.send(answer)
+        image_url = get_cat_image_url()
+
+        await message.channel.send(
+          embed=get_embed(answer, image_url)
+        )
 
 
 keep_alive()
