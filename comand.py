@@ -1,12 +1,12 @@
-
-class Command:
+class Command():
     """
     Comands class.
 
     If you want to create a new command you should use this class
     """
 
-    def __init__(self, content:str = None, description:str = 'Sin descripción aún, pregúntale al develper chancado que lo creó'):
+    def __init__(self, content: str = None,
+                 description: str = 'Sin descripción aún, pregúntale al develper chancado que lo creó'):
         """
         Init command
         """
@@ -16,11 +16,12 @@ class Command:
         self.content = content
         self.description = description
 
-    
-    def on_triggered():
+
+    def on_triggered(self):
         """
-        This function should be overrited
+        This function should be overrated
         """
+        print("This function should be overrated")
         pass
 
     def __str__(self):
@@ -28,8 +29,3 @@ class Command:
         Descripción: {self.description}\n
         """
         return string
-        
-
-
-
-
