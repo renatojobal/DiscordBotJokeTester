@@ -22,7 +22,7 @@ async def on_message(message):
     Event triggered each time when a message is sent in a channel 
     when the bot has access
     """
-    print(message.__class__)
+
     # This line prevent the bot to answer itself
     if message.author == client.user:
         return
