@@ -4,6 +4,7 @@ import json
 import os
 from discord import Embed
 import requests
+from discord.message import Message
 
 jokes_answer = [
     'Mas o menos tu bromita 7/10',
@@ -24,11 +25,17 @@ jokes_answer = [
 
 class Test_Joke(Command):
 
-    def on_triggered(self):
+    async def on_triggered(self, message: Message):
         """
         Return a message of a joke and a image of a cat
         :return:Embed message
         """
+        answer = self.get_answer_to_joke()
+        image_url = self.get_cat_image_url()
+
+        await message.channel.send(
+                    embed=self.get_embed(answer, image_url)
+                )
 
     def get_answer_to_joke(self):
         return random.choice(jokes_answer)

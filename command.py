@@ -1,3 +1,5 @@
+from discord.message import Message
+
 class Command():
     """
     Comands class.
@@ -18,7 +20,7 @@ class Command():
         self.description = description
         self.alt = alt
 
-    def on_triggered(self):
+    async def on_triggered(self, message: Message):
         """
         This function should be overrated
         """
@@ -26,7 +28,6 @@ class Command():
         pass
 
     def __str__(self):
-        string = f"""\nComando: {self.content}
-        Descripción: {self.description}\n
+        string = f"""\nComando: {self.content}\nDescripción: {self.description}
         """
         return string

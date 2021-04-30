@@ -1,6 +1,8 @@
 from discord import Embed
 
 from command import Command
+from discord.message import Message
+import random
 
 # Images of System Boys
 custom_images = [
@@ -10,6 +12,15 @@ custom_images = [
 
 
 class Random_Sys_Image(Command):
+    """
+    Return a random image of the set custom_images
+    """
 
-    def on_triggered(self):
-        return Embed('Testing')
+    async def on_triggered(self, message: Message):
+        embed = Embed(
+            description='Random image')
+        embed.set_image(url=random.choice(custom_images))
+
+        await message.channel.send(
+                    embed=embed
+                )

@@ -22,7 +22,7 @@ async def on_message(message):
     Event triggered each time when a message is sent in a channel 
     when the bot has access
     """
-
+    print(message.__class__)
     # This line prevent the bot to answer itself
     if message.author == client.user:
         return
@@ -34,14 +34,17 @@ async def on_message(message):
 
         for command in config.registered_commands:
             if command.content == message.content:
-                await message.channel.send(
-                    embed=command.on_triggered()
-                )
+                await command.on_triggered(message)
                 return
 
         # Handle here if the commando is not registered
+        help_message = '```\nComandos disponibles:\n'
+        for command in config.registered_commands:
+            help_message += command.__str__()
+        help_message += '```'
+
         await message.channel.send(
-            embed=config.registered_commands[0].on_triggered()
+            help_message
         )
 
 
