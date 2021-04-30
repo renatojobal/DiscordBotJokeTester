@@ -33,7 +33,7 @@ async def on_message(message):
         """
 
         for command in config.registered_commands:
-            if command.content == message.content:
+            if command.content == message.content or command.alt == message.content:
                 await command.on_triggered(message)
                 return
 

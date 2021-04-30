@@ -28,6 +28,6 @@ class Command():
         pass
 
     def __str__(self):
-        string = f"""\nComando: {self.content}\nDescripción: {self.description}
+        string = f"""\nComando: {self.content}\nDescripción: {self.description}\nAtajo: {self.alt}
         """
         return string
