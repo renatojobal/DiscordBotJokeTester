@@ -1,9 +1,6 @@
 from command import Command
 import random
-import json
-import os
 from discord import Embed
-import requests
 from discord.message import Message
 
 jokes_answer = [
@@ -27,34 +24,23 @@ class Test_Joke(Command):
 
     async def on_triggered(self, message: Message):
         """
-        Return a message of a joke and a image of a cat
+        Return a message of a joke
         :return:Embed message
         """
         answer = self.get_answer_to_joke()
-        image_url = self.get_cat_image_url()
+
 
         await message.channel.send(
-                    embed=self.get_embed(answer, image_url)
+                    embed=self.get_embed(answer)
                 )
 
     def get_answer_to_joke(self):
         return random.choice(jokes_answer)
 
-    def get_cat_image_url(self):
-        url = "https://api.thecatapi.com/v1/images/search?mime_types=png"
 
-        headers = {'x-api-key': os.environ['CAT_API_KEY']}
-
-        response = json.loads(requests.request("GET", url, headers=headers).text)
-
-        image_url = response[0]['url']
-
-        return image_url
-
-    def get_embed(self, answer: str, image_url: str):
+    def get_embed(self, answer: str):
         embed = Embed(
             title=answer,
             message=answer,
             description="Un gatito :3")
-        embed.set_image(url=image_url)
         return embed
