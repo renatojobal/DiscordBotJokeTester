@@ -4,7 +4,7 @@ from flask import Flask
 
 """
 This file is used as a trick to keep the bot running.
-You don need to modify it.
+You don't need to modify it.
 """
 
 app = Flask('')
